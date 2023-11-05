@@ -1,22 +1,13 @@
-import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { AuthContext } from '../context/AuthContext';
 // import { CartContext } from '../context/CartContext';
 import avatar from '../assets/user8.png';
 import useAuth from '../hooks/useAuth';
 
 const Nav = () => {
-  // const [isDark, setIsDark] = useState(true);
-  // const { logOut, user } = useContext(AuthContext);
   const { logOut, user } = useAuth();
 
   // const { cartItems } = useContext(CartContext);
-  // const dark = (e) => {
-  //   e.preventDefault();
-  //   document.documentElement.classList.toggle('dark');
-  //   setIsDark(!isDark);
-  // };
 
   const handleLogout = () => {
     logOut()
@@ -28,7 +19,7 @@ const Nav = () => {
       });
   };
   return (
-    <div className="px-2 lg:px-0 bg-black bg-transparent text-primary-color text-white py-2 md:py-6">
+    <div className="px-2 lg:px-0 py-2 md:py-6">
       <div className="navbar  max-w-7xl mx-auto">
         <div className="md:navbar-start  w-full flex justify-between items-center">
           <div className="flex gap-2 md:gap-2 lg:gap-5 items-center">
@@ -58,7 +49,7 @@ const Nav = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content -left-14 mt-3 p-2 shadow bg-base-100 rounded-box w-24 mr-10 z-40 text-white text-black bg-primary-color"
+              className="menu menu-compact dropdown-content -left-14 mt-3 p-2 shadow rounded-box w-24 mr-10 z-40 text-white  bg-primary-color"
             >
               <li>
                 <Link to="/">Home</Link>
@@ -101,8 +92,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color border-stone-300 pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold lg:text-lg'
+                    ? 'border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
+                    : 'font-semibold lg:text-lg hover:text-primary-color duration-100  '
                 }
               >
                 Home
@@ -111,31 +102,59 @@ const Nav = () => {
 
             <li>
               <NavLink
-                to="/addproduct"
+                to="/addblog"
                 className={({ isActive, isPending }) =>
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color  border-stone-300 pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold lg:text-lg'
+                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
                 }
               >
-                Add product
+                Add Blog
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/cart"
+                to="/featuredblogs"
                 className={({ isActive, isPending }) =>
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color border-stone-300 pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold lg:text-lg'
+                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
+                }
+              >
+                Featured Blogs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/allblogs"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'pending'
+                    : isActive
+                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
+                }
+              >
+                All Blogs
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/wishlist"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'pending'
+                    : isActive
+                    ? 'border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
+                    : 'font-semibold lg:text-lg hover:text-primary-color duration-100 '
                 }
               >
                 {/* Cart{user?.email && `(${cartItems.length})`} */}
-                Cart
+                Wishlist
               </NavLink>
             </li>
 
@@ -162,7 +181,7 @@ const Nav = () => {
             {user?.email ? (
               <>
                 <button
-                  className="bg-transparent border-2 text-sm md:text-base border-primary-color border-white rounded-sm px-3 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-1.5.5 text-stone font-semibold"
+                  className="bg-transparent border-2 text-sm md:text-base border-stone-900  rounded-sm px-3 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-1.5.5 text-stone font-semibold"
                   onClick={handleLogout}
                 >
                   Logout
@@ -191,8 +210,8 @@ const Nav = () => {
                       isPending
                         ? 'pending'
                         : isActive
-                        ? ' border-l-8 border-primary-color border-stone-300 pl-1 lg:text-lg font-semibold'
-                        : 'font-semibold lg:text-lg'
+                        ? ' border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
+                        : 'font-semibold lg:text-lg hover:text-primary-color duration-100 '
                     }
                   >
                     Sign up
@@ -200,7 +219,7 @@ const Nav = () => {
                 </li>
                 <Link
                   to="/login"
-                  className="bg-transparent border-2 text-sm md:text-base border-primary-color border-white rounded-sm px-3 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-1.5.5  font-semibold"
+                  className="bg-transparent border-2 text-sm md:text-base border-stone-900 rounded-sm px-3 py-1.5 sm:px-3 sm:py-1.5 md:px-4 md:py-1.5.5  font-semibold"
                 >
                   Login
                 </Link>

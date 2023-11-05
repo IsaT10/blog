@@ -121,7 +121,7 @@ const Login = () => {
         </label>
         <input
           className="input 
-         border-none text-secondary-color input-bordered w-full"
+         border-none  input-bordered w-full"
           type="text"
           placeholder="E-mail address"
           name="emali"
@@ -138,7 +138,7 @@ const Login = () => {
           <span className="label-text mt-2  font-semibold ">Password</span>
         </label>
         <input
-          className="input border-none input-bordered text-secondary-color w-full"
+          className="input border-none input-bordered  w-full"
           type="password"
           placeholder="Password"
           name="password"

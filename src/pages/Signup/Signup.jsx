@@ -141,7 +141,7 @@ const Signup = () => {
           </span>
         </label>
         <input
-          className="input border-none input-bordered text-secondary-color w-full"
+          className="input border-none input-bordered  w-full"
           type="text"
           placeholder="Name"
           name="name"
@@ -154,7 +154,7 @@ const Signup = () => {
           </span>
         </label>
         <input
-          className="input border-none input-bordered text-secondary-color w-full"
+          className="input border-none input-bordered  w-full"
           type="text"
           placeholder="E-mail address"
           name="emali"
@@ -170,7 +170,7 @@ const Signup = () => {
           </span>
         </label>
         <input
-          className="input border-none input-bordered text-secondary-color w-full"
+          className="input border-none input-bordered  w-full"
           type="password"
           placeholder="Password"
           name="password"
@@ -186,7 +186,7 @@ const Signup = () => {
           </span>
         </label>
         <input
-          className="input border-none input-bordered text-secondary-color w-full"
+          className="input border-none input-bordered  w-full"
           type="password"
           placeholder="Confirm password"
           name="confirm"
@@ -200,15 +200,13 @@ const Signup = () => {
         <button className="border-2 border-white px-8 py-2 text-white uppercase font-semibold rounded-lg  mx-auto w-40 disabled:opacity-75 mt-4">
           Sign up
         </button>
-        <p className="text-center mt-3 text-secondary-color">
+        <p className="text-center mt-3 ">
           Already have an account?
           <Link to="/login" className="link  text-white underline">
             Login
           </Link>
         </p>
-        <p className="text-center text-secondary-color">
-          ----Or, sign up with----
-        </p>
+        <p className="text-center ">----Or, sign up with----</p>
       </form>
       <button
         onClick={handleGoogleSignIn}
