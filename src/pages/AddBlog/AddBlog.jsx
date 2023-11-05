@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import SectionTitle from '../../components/SectionTitle';
+import { useNavigate } from 'react-router-dom';
 
 const AddBlog = () => {
   const [blogInfo, setBlogInfo] = useState({
@@ -17,7 +18,7 @@ const AddBlog = () => {
   const date = new Date();
 
   const { user } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,6 +69,10 @@ const AddBlog = () => {
       .post('http://localhost:5000/api/blogs', blog)
       .then(function (response) {
         console.log(response.data);
+        if (response.data.acknowledged) {
+          toast.success('Add new blog');
+          navigate('/');
+        }
       })
       .catch(function (error) {
         console.log(error);

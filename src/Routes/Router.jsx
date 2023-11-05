@@ -6,6 +6,7 @@ import Signup from '../pages/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
 import AddBlog from '../pages/AddBlog/AddBlog';
 import Wishlist from '../pages/Wishlist/Wishlist';
+import AllBlogs from '../pages/AllBlogs/AllBlogs';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       {
-        path: '/addblog',
+        path: 'addblog',
         element: (
           <PrivateRoute>
             <AddBlog />
@@ -22,13 +23,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/wishlist',
+        path: 'wishlist',
         element: (
           <PrivateRoute>
             <Wishlist />
           </PrivateRoute>
         ),
       },
+      { path: 'allblogs', element: <AllBlogs /> },
     ],
   },
   { path: '/login', element: <Login /> },
