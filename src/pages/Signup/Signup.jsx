@@ -22,8 +22,6 @@ const Signup = () => {
   const from = location.state?.from?.pathname || '/';
 
   const { createUser, googleSignIn, userProfileUpdate, setLoading } = useAuth();
-  //   const { createUser, googleSignIn, userProfileUpdate, setLoading } =
-  //     useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -132,13 +130,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-stone-300 sm:w-[350px] md:w-[450px] py-5 sm:py-8 flex flex-col md:px-10 px-6 lg:px-10 mx-6 sm:mx-auto rounded-md my-10">
+    <div className="bg-[#1FACA5] sm:w-[350px] md:w-[450px] py-5 sm:py-8 flex flex-col md:px-10 px-6 lg:px-10 mx-6 sm:mx-auto rounded-md my-10">
       <form onSubmit={handleSubmit} className="flex flex-col  justify-between ">
-        <h2 className="text-xl text-primary-color md:text-2xl lg:text-3xl font-bold text-center">
+        <h2 className="text-xl text-white md:text-2xl lg:text-3xl font-bold text-center">
           Register
         </h2>
         <label className="label">
-          <span className="label-text lg:mt-4 text-primary-color font-semibold ">
+          <span className="label-text lg:mt-4 text-stone-200 font-semibold ">
             Your name
           </span>
         </label>
@@ -151,7 +149,7 @@ const Signup = () => {
           required
         />
         <label className="label">
-          <span className="label-text lg:mt-2 text-primary-color font-semibold ">
+          <span className="label-text lg:mt-2 text-stone-200 font-semibold ">
             Your email
           </span>
         </label>
@@ -167,7 +165,7 @@ const Signup = () => {
           {errors.email}
         </p>
         <label className="label">
-          <span className="label-text lg:mt-2 text-primary-color font-semibold ">
+          <span className="label-text lg:mt-2 text-stone-200 font-semibold ">
             Password
           </span>
         </label>
@@ -183,7 +181,7 @@ const Signup = () => {
           {errors.password}
         </p>
         <label className="label">
-          <span className="label-text lg:mt-2 text-primary-color font-semibold ">
+          <span className="label-text lg:mt-2 text-stone-200 font-semibold ">
             Confirm password
           </span>
         </label>
@@ -199,12 +197,12 @@ const Signup = () => {
           {errors.confirmPassword}
         </p>
 
-        <button className="bg-primary-color px-8 py-2 text-white uppercase font-semibold rounded-sm  mx-auto w-40 disabled:opacity-75 mt-4">
+        <button className="border-2 border-white px-8 py-2 text-white uppercase font-semibold rounded-lg  mx-auto w-40 disabled:opacity-75 mt-4">
           Sign up
         </button>
         <p className="text-center mt-3 text-secondary-color">
           Already have an account?
-          <Link to="/login" className="link no-underline text-primary-color">
+          <Link to="/login" className="link  text-white underline">
             Login
           </Link>
         </p>
@@ -214,10 +212,10 @@ const Signup = () => {
       </form>
       <button
         onClick={handleGoogleSignIn}
-        className="bg-primary-color p-3 rounded-full  flex items-center justify-center gap-2 mt-4"
+        className="border-2 p-3 rounded-full  flex items-center justify-center gap-2 mt-4"
       >
-        <FaGoogle className="text-secondary-color" />
-        <span className="font-semibold text-stone-200">Google</span>
+        <FaGoogle className="text-stone-100" />
+        <span className="font-semibold text-stone-100">Google</span>
       </button>
     </div>
   );

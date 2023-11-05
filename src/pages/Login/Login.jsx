@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
@@ -31,6 +30,7 @@ const Login = () => {
     if (!userInfo.password) return;
     logIn(userInfo.email, userInfo.password)
       .then((result) => {
+        toast.success('Successful Login');
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -107,19 +107,17 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-stone-400 sm:w-[350px] md:w-[400px] mx-6 sm:mx-auto my-10 md:my-20 rounded-md flex flex-col px-4 sm:px-10  justify-between shadow-lg py-8">
+    <div className="bg-[#1FACA5] sm:w-[350px] md:w-[400px] mx-6 sm:mx-auto my-10 md:my-20 rounded-md flex flex-col px-4 sm:px-10  justify-between shadow-lg py-8">
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col justify-between  "
       >
-        <h2 className="text-xl text-primary-color md:text-2xl lg:text-3xl font-bold text-center">
+        <h2 className="text-xl  md:text-2xl lg:text-3xl font-bold text-center">
           Log in
         </h2>
 
         <label className="label">
-          <span className="label-text mt-2 text-primary-color font-semibold ">
-            Your email
-          </span>
+          <span className="label-text mt-2  font-semibold ">Your email</span>
         </label>
         <input
           className="input 
@@ -137,9 +135,7 @@ const Login = () => {
         </p>
 
         <label className="label">
-          <span className="label-text mt-2 text-primary-color font-semibold ">
-            Password
-          </span>
+          <span className="label-text mt-2  font-semibold ">Password</span>
         </label>
         <input
           className="input border-none input-bordered text-secondary-color w-full"
@@ -163,23 +159,23 @@ const Login = () => {
           Forget password
         </button>
 
-        <button className="bg-primary-color px-8 py-2 text-stone-200 uppercase font-semibold rounded-sm mt-4 mx-auto w-40 border-primary-color duration-200">
+        <button className="border-2 border-stone-800 px-8 py-2  uppercase font-semibold  mt-4 mx-auto w-full rounded-xl">
           Login
         </button>
-        <p className="text-center text-stone-200 mt-3">
+        <p className="text-center text-cyan-100 mt-3">
           Don't have account?
-          <Link to="/signup" className="link no-underline text-primary-color">
+          <Link to="/signup" className="link  text-stone-800">
             {''} Sign up
           </Link>
         </p>
-        <p className="text-center text-stone-200">----Or, Login with----</p>
+        <p className="text-center text-cyan-100">----Or, Login with----</p>
       </form>
       <button
         onClick={handleGoogleSignIn}
-        className="bg-primary-color p-3 rounded-full mt-4 flex items-center justify-center gap-2"
+        className="border-2 border-black p-3 rounded-full mt-4 flex items-center justify-center gap-2"
       >
-        <FaGoogle className="text-secondary-color" />
-        <span className="font-semibold text-stone-200">Google</span>
+        <FaGoogle className="" />
+        <span className="font-semibold">Google</span>
       </button>
     </div>
   );
