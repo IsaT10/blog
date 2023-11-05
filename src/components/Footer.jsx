@@ -1,11 +1,6 @@
-import React from 'react';
-import {
-  FaGoogle,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-  FaWhatsapp,
-} from 'react-icons/fa';
+import { AiFillInstagram } from 'react-icons/ai';
+import { IoLogoWhatsapp } from 'react-icons/io';
+import { FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -26,8 +21,8 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex gap-3 text-primary-color text-3xl">
-          <FaWhatsapp />
-          <FaInstagram />
+          <IoLogoWhatsapp />
+          <AiFillInstagram />
           <FaLinkedin />
           <FaTwitter />
         </div>

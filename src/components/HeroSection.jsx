@@ -2,7 +2,7 @@ import hero2 from '../assets/hero2.jpg';
 
 const HeroSection = () => {
   return (
-    <div className="md:flex  justify-between items-center mt-5 mx-2">
+    <div className="md:flex md:h-[75vh] justify-between items-center mt-5 mx-2">
       <div className="flex-1 ">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-color">
           READ NEXT <br /> LEVEL BLOGS HERE
