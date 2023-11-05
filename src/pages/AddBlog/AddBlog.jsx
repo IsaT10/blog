@@ -1,61 +1,82 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import SectionTitle from '../../components/SectionTitle';
 
 const AddBlog = () => {
   const [blogInfo, setBlogInfo] = useState({
     title: '',
-    brandName: '',
     category: '',
-    price: '',
     short_description: '',
     long_description: '',
     image: '',
   });
+  // console.log(blogInfo.category);
+
+  const date = new Date();
 
   const { user } = useAuth();
   // const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = { ...blogInfo, authorName: user?.displayName };
+    const blog = {
+      ...blogInfo,
+      authorName: user?.displayName,
+      date,
+      email: user?.email,
+    };
     console.log(blog);
+    // const obj = [
+    //   {
+    //     title: 'dsadas',
+    //     brandName: '',
+    //     category: 'Science',
+    //     price: 'asd',
+    //     short_description: 'asd',
+    //     long_description: 'das',
+    //     image: 'asdas',
+    //     authorName: 'Rakib Uddin',
+    //     date: '2023-11-05T08:45:59.836Z',
+    //   },
+    //   {
+    //     title: 'dsadas',
+    //     brandName: '',
+    //     category: 'Garden',
+    //     price: 'asd',
+    //     short_description: 'asd',
+    //     long_description: 'das',
+    //     image: 'asdas',
+    //     authorName: 'Rakib Uddin',
+    //     date: '2023-11-05T08:45:42.747Z',
+    //   },
+    //   {
+    //     title: 'dsadas',
+    //     brandName: '',
+    //     category: 'Health',
+    //     price: 'asd',
+    //     short_description: 'asd',
+    //     long_description: 'das',
+    //     image: 'asdas',
+    //     authorName: 'Rakib Uddin',
+    //     date: '2023-11-05T08:44:56.074Z',
+    //   },
+    // ];
 
-    // const createBlog = async (data) => {
-    //   try {
-    //     const res = await fetch(
-    //       'https://digital-nexus-server.vercel.app/products',
-    //       {
-    //         method: 'POST',
-    //         headers: { 'content-type': 'application/json' },
-    //         body: JSON.stringify(data),
-    //       }
-    //     );
-    //     const result = await res.json();
-    //     if (result.acknowledged) {
-    //       toast.success('Add product successfully');
-    //       setBlogInfo({
-    //         ...blogInfo,
-    //         title: '',
-    //         brandName: '',
-    //         category: '',
-    //         price: '',
-    //         short_description: '',
-    //         long_description: '',
-    //         image: '',
-    //       });
-    //       // navigate(`/products/${productInfo.brandName}`);
-    //       // navigate('/');
-    //     }
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    // createBlog(blog);
+    axios
+      .post('http://localhost:5000/api/blogs', blog)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
     <div className="my-5 md:mt-10">
+      <SectionTitle>WRITE A BLOG</SectionTitle>
       <form
         onSubmit={handleSubmit}
         className="max-w-7xl xl:mx-auto mx-10 my-6 sm:my-12 flex flex-col sm:gap-20 gap-10"
@@ -93,77 +114,85 @@ const AddBlog = () => {
         <div className="flex sm:flex-row flex-col gap-10 ">
           <div className="sm:w-1/2">
             <label className="text-stone-700 font-semibold">Ctegory</label>
-            <input
+            <br />
+
+            <select
               className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3"
-              type="text"
-              value={blogInfo.category}
-              onChange={(e) => {
+              onBlur={(e) => {
                 setBlogInfo({ ...blogInfo, category: e.target.value });
               }}
-            />
+            >
+              <option className="text-lg font-semibold" value="Food">
+                Food
+              </option>
+              <option className="text-lg font-semibold" value="Travel">
+                Travle
+              </option>
+              <option className="text-lg font-semibold" value="Health">
+                Health
+              </option>
+              <option className="text-lg font-semibold" value="Technology">
+                Technology
+              </option>
+              <option className="text-lg font-semibold" value="Garden">
+                Garden
+              </option>
+              <option className="text-lg font-semibold" value="Science">
+                Science
+              </option>
+            </select>
           </div>
           <div className="sm:w-1/2">
-            <label className="text-stone-700 font-semibold">Price</label>
-
+            <label className="text-stone-700 font-semibold">Image URL</label>
             <input
-              className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3"
-              value={blogInfo.price}
-              onChange={(e) => {
-                setBlogInfo({ ...blogInfo, price: e.target.value });
-              }}
+              className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3 mb-4"
               type="text"
-            />
-          </div>
-        </div>
-        <div className="flex sm:flex-row flex-col gap-10 ">
-          <div className="sm:w-1/2">
-            <label className="text-stone-700 font-semibold">
-              Short description
-            </label>
-            <input
-              className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3"
-              type="text"
-              value={blogInfo.short_description}
-              onChange={(e) => {
-                setBlogInfo({
-                  ...blogInfo,
-                  short_description: e.target.value,
-                });
-              }}
-            />
-          </div>
-          <div className="sm:w-1/2">
-            <label className="text-stone-700 font-semibold">Blog Content</label>
-
-            <input
-              className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3 "
-              value={blogInfo.long_description}
+              value={blogInfo.image}
               onChange={(e) => {
                 setBlogInfo({
                   ...blogInfo,
-                  long_description: e.target.value,
+                  image: e.target.value,
                 });
               }}
-              type="text"
             />
           </div>
         </div>
         <div className="w-full">
-          <label className="text-stone-700 font-semibold">Image URL</label>
+          <label className="text-stone-700 font-semibold">
+            Short description
+          </label>
           <input
-            className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3 mb-4"
+            className="bg-white  border-b-[1px] border-stone-400  outline-none w-full pb-2 placeholder:pl-3"
             type="text"
-            value={blogInfo.image}
+            value={blogInfo.short_description}
             onChange={(e) => {
               setBlogInfo({
                 ...blogInfo,
-                image: e.target.value,
+                short_description: e.target.value,
               });
             }}
           />
         </div>
+        <div className="w-full ">
+          <label className="text-stone-700 font-semibold">Blog Content</label>
+
+          <textarea
+            className="bg-white  border-[1px] border-stone-400 py-2 rounded-md px-3 mt-2 outline-none w-full pb-2 placeholder:pl-3 h-[300px]"
+            value={blogInfo.long_description}
+            onChange={(e) => {
+              setBlogInfo({
+                ...blogInfo,
+                long_description: e.target.value,
+              });
+            }}
+            type="text"
+          />
+        </div>
+
         {/* <Button>Add Product</Button> */}
-        <button>Submit</button>
+        <button className="bg-primary-color w-[90px] text-white rounded-md font-semibold px-4 py-2 text-center">
+          Submit
+        </button>
       </form>
     </div>
   );
