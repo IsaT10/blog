@@ -20,18 +20,18 @@ const Nav = () => {
   };
   return (
     <div className="px-2 lg:px-0 py-2 md:py-6">
-      <div className="navbar  max-w-7xl mx-auto">
-        <div className="md:navbar-start  w-full flex justify-between items-center">
-          <div className="flex gap-2 md:gap-2 lg:gap-5 items-center">
+      <div className="navbar  max-w-7xl mx-auto flex justify-between">
+        <div className=" flex w-full md:w-10 justify-between items-center">
+          <div className="flex  gap-2 md:gap-2 lg:gap-5 items-center">
             <Link to="/">
-              <h1 className="text-lg md:text-xl lg:text-2xl  font-semibold ">
-                DigitalNexus
+              <h1 className="text-lg md:text-xl lg:text-2xl text-primary-color font-bold ">
+                BlogBloom
               </h1>
             </Link>
           </div>
 
           <div className="dropdown ">
-            <label tabIndex={0} className="btn  btn-ghost md:hidden  focus:">
+            <label tabIndex={0} className="btn  btn-ghost md:hidden ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -83,8 +83,8 @@ const Nav = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-end hidden md:flex ">
-          <ul className="flex gap-6 items-center">
+        <div className=" hidden md:flex ">
+          <ul className="flex gap-4 items-center">
             <li>
               <NavLink
                 to="/"
@@ -92,8 +92,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold lg:text-lg hover:text-primary-color duration-100  '
+                    ? 'border-l-8 border-primary-color  pl-1  font-semibold'
+                    : 'font-semibold  hover:text-primary-color duration-100  '
                 }
               >
                 Home
@@ -107,8 +107,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
+                    ? 'border-l-8 border-primary-color   pl-1  font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 '
                 }
               >
                 Add Blog
@@ -121,8 +121,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
+                    ? 'border-l-8 border-primary-color   pl-1  font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 '
                 }
               >
                 Featured Blogs
@@ -135,8 +135,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color   pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold hover:text-primary-color duration-100 lg:text-lg'
+                    ? 'border-l-8 border-primary-color   pl-1  font-semibold'
+                    : 'font-semibold hover:text-primary-color duration-100 '
                 }
               >
                 All Blogs
@@ -149,8 +149,8 @@ const Nav = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
-                    : 'font-semibold lg:text-lg hover:text-primary-color duration-100 '
+                    ? 'border-l-8 border-primary-color  pl-1  font-semibold'
+                    : 'font-semibold  hover:text-primary-color duration-100 '
                 }
               >
                 {/* Cart{user?.email && `(${cartItems.length})`} */}
@@ -187,7 +187,7 @@ const Nav = () => {
                   Logout
                 </button>
 
-                <li className="font-semibold uppercase">{user?.displayName}</li>
+                {/* <li className="font-semibold uppercase">{user?.displayName}</li> */}
 
                 {user?.photoURL ? (
                   <div className="avatar">
@@ -210,8 +210,8 @@ const Nav = () => {
                       isPending
                         ? 'pending'
                         : isActive
-                        ? ' border-l-8 border-primary-color  pl-1 lg:text-lg font-semibold'
-                        : 'font-semibold lg:text-lg hover:text-primary-color duration-100 '
+                        ? ' border-l-8 border-primary-color  pl-1  font-semibold'
+                        : 'font-semibold  hover:text-primary-color duration-100 '
                     }
                   >
                     Sign up
