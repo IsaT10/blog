@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-const useBlogs = () => {
-  const { isLoading, error, data } = useQuery({
+const useGetData = () => {
+  const { isLoading: blogsLoading, data: blogs } = useQuery({
     queryKey: ['blogs'],
     queryFn: async () => {
       const data = await fetch('http://localhost:5000/api/blogs');
@@ -21,7 +21,19 @@ const useBlogs = () => {
     },
   });
 
-  return { isLoading, data, error };
+  const {
+    data: comments,
+    isLoading: commentLoading,
+    refetch: commentsRefatch,
+  } = useQuery({
+    queryKey: ['comment'],
+    queryFn: async () => {
+      const data = await fetch('http://localhost:5000/api/blog/comment');
+      return data.json();
+    },
+  });
+
+  return { blogs, comments, commentsRefatch, blogsLoading, commentLoading };
 };
 
-export default useBlogs;
+export default useGetData;

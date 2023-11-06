@@ -18,14 +18,16 @@ const BlogCard = ({
   const { user } = useAuth();
   const { addToWishlist, setWishlistItems } = useWishlist();
 
+  const linkTitle = title.toLowerCase().replace(/ /g, '-');
+
   const handleAddToWishlist = () => {
-    // if (!user) {
-    //   navigate('/login');
-    //   return;
-    // }
+    if (!user) {
+      navigate('/login');
+      return;
+    }
 
     const data = {
-      blogId: _id,
+      // blogId: _id,
       title,
       image,
       short_description,
@@ -60,7 +62,7 @@ const BlogCard = ({
                   <p className="text-gray-400 my-4 font-semibold">
                     {short_description.slice(0, 70)}...
                   </p>
-                  <Link to={`/blog/:blogName/:id`}>
+                  <Link to={`/blog/${linkTitle}/${_id}`}>
                     <button className="bg-primary-color text-white font-semibold px-4 py-2 rounded-md ">
                       Details
                     </button>

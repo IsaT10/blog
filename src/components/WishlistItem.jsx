@@ -98,7 +98,7 @@ const WishlistItem = ({
       </div>
       <MdCancel
         onClick={handleDelete}
-        className="text-2xl absolute text-[#FF0000] -right-2 cursor-pointer -top-2"
+        className="text-3xl absolute text-primary-color -right-3 cursor-pointer -top-3"
       />
     </div>
   );

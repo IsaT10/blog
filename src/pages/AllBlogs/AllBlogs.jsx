@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import BlogCard from '../../components/BlogCard';
 import SectionTitle from '../../components/SectionTitle';
-import useBlogs from '../../hooks/useBlogs';
+import useGetData from '../../hooks/useGetData';
 import { FaSearch } from 'react-icons/fa';
 import useCategory from '../../hooks/useCategory';
 
@@ -9,9 +9,9 @@ const AllBlogs = () => {
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [serachedItem, setSearchedItem] = useState([]);
-  const { data: blogs, isLoading: loading } = useBlogs();
+  const { blogs, blogsLoading } = useGetData();
 
-  const { data, isLoading, refetch, clearData } = useCategory(category);
+  const { data, isLoading, refetch } = useCategory(category);
 
   useEffect(() => {
     refetch();

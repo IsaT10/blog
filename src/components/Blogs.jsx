@@ -1,23 +1,23 @@
-import useBlogs from '../hooks/useBlogs';
+import useGetData from '../hooks/useGetData';
 import BlogCard from './BlogCard';
 import Loader from './Loader';
 import SectionTitle from './SectionTitle';
 
 const Blogs = () => {
-  const { data, isLoading } = useBlogs();
+  const { blogs, blogsLoading } = useGetData();
 
-  console.log(data);
-  console.log(isLoading);
+  console.log(blogs);
+  console.log(blogsLoading);
   return (
     <div className="my-10 mx-2">
       <SectionTitle>Recent Blogs</SectionTitle>
-      {isLoading ? (
+      {blogsLoading ? (
         <div className="h-[60vh] flex flex-col items-center justify-center">
           <Loader />
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-20 items-start">
-          {data?.slice(0, 6).map((blog) => (
+          {blogs?.slice(0, 6).map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>

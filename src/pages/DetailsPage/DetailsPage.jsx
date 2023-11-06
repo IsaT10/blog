@@ -1,5 +1,135 @@
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import useGetData from '../../hooks/useGetData';
+import CommentList from '../../components/CommentList';
+
 const DetailsPage = () => {
-  return <div>ahsdsahh</div>;
+  const [comment, setComment] = useState('');
+  const { id } = useParams();
+  const { comments, commentsRefatch } = useGetData();
+  const { user } = useAuth();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['blogDetails'],
+    queryFn: async () => {
+      const blog = await fetch(`http://localhost:5000/api/blogs/${id}`);
+      return blog.json();
+    },
+  });
+
+  const {
+    _id,
+    authorName,
+
+    title,
+    image,
+    short_description,
+    long_description,
+    date,
+  } = data || {};
+
+  console.log(data);
+
+  const commentData = {
+    blogId: _id,
+    email: user?.email,
+    userName: user?.displayName,
+    authorImg: user?.photoURL,
+    comment,
+  };
+
+  console.log(comments);
+
+  const handleComment = () => {
+    axios
+      .post('http://localhost:5000/api/blog/comment', commentData)
+      .then((res) => {
+        if (res.data.acknowledged) {
+          toast.success('comment add');
+          commentsRefatch();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const datee = new Date(date);
+  const day = datee.getUTCDate();
+  const month = datee.getUTCMonth() + 1;
+  const year = datee.getUTCFullYear();
+
+  const formattedDate = `${String(day).padStart(2, '0')}-${String(
+    month
+  ).padStart(2, '0')}-${year}`;
+
+  return (
+    <div>
+      <div className="md:flex gap-8 my-8 mx-2 min-h-[70vh]">
+        <div className="flex-1">
+          <img className=" w-full rounded-md object-cover" src={image} alt="" />
+        </div>
+        <div className="flex-1">
+          <div className="min-h-[80vh]">
+            <div className="flex justify-between font-semibold text-primary-color mb-6">
+              <p>{authorName}</p>
+              <p>{formattedDate}</p>
+            </div>
+            <h3 className="text-2xl font-semibold text-stone-700 mb-9">
+              {title}
+            </h3>
+            <p className="text-gray-500 text-md lg:text-lg !leading-8 block tracking-tight mb-4">
+              {short_description}
+            </p>
+            <p className="text-gray-500 text-md lg:text-lg !leading-8 block tracking-tight">
+              {long_description}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-20 w-full">
+        <div className="flex-1">
+          {comments.map((comment, idx) => (
+            <CommentList key={idx} comment={comment} />
+          ))}
+        </div>
+        {/* <div className="flex-1 grid grid-cols-[min-content,1fr] gap-2 gap-x-4 tracking-tight">
+          <figure className="row-span-2 h-12 w-12">
+            <img
+              className="rounded-md"
+              src={user?.photoURL}
+              alt="comment author"
+            />
+          </figure>
+          <h4 className="text-xl font-semibold text-stone-700 leading-6">
+            {user?.displayName}
+          </h4>
+          <p className="font-semibold text-lg text-stone-500 ">
+            f.dev has a lot of awesome and informative blogs. When I get free
+            time I always visit this website for learning.
+          </p>
+        </div> */}
+        <div className="flex-1">
+          <div className="flex gap-2 ">
+            <input
+              className="rounded-sm border-2 border-stone-500 px-3 py-3 flex-1"
+              type="text"
+              placeholder="Share your thoughts"
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button
+              onClick={handleComment}
+              className="font-semibold bg-primary-color rounded-md py-1.5 border-2 border-primary-color px-4 text-white"
+            >
+              Comment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default DetailsPage;
