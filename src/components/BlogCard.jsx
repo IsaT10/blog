@@ -70,14 +70,6 @@ const BlogCard = ({
                 </div>
                 <div className="flex  space-x-2 text-sm font-medium items-center justify-between">
                   <div className="flex items-center flex-col  gap-2">
-                    {/* <Link to={`/products/${brandName}/${_id}`}>
-                        <div
-                          className="tooltip tooltip-left"
-                          data-tip="Details"
-                        >
-                          <BsEyeFill className="text-2xl text-secondary-color duration-200 cursor-pointer " />
-                        </div>
-                      </Link> */}
                     <div className="tooltip tooltip-left" data-tip="Wishlist">
                       <AiOutlineHeart
                         onClick={handleAddToWishlist}

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
@@ -75,8 +75,8 @@ const DetailsPage = () => {
   ).padStart(2, '0')}-${year}`;
 
   return (
-    <div>
-      <div className="md:flex gap-8 my-8 mx-2 min-h-[70vh]">
+    <div className="my-8 mx-2">
+      <div className="md:flex gap-8  min-h-[70vh]">
         <div className="flex-1">
           <img className=" w-full rounded-md object-cover" src={image} alt="" />
         </div>
@@ -95,16 +95,20 @@ const DetailsPage = () => {
             <p className="text-gray-500 text-md lg:text-lg !leading-8 block tracking-tight">
               {long_description}
             </p>
+            {email === user?.email ? (
+              <Link to={`/blog/update/${_id}`}>
+                <button className="font-semibold bg-primary-color rounded-md py-1.5 border-2 border-primary-color px-4 text-white my-8">
+                  Update Blog
+                </button>
+              </Link>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </div>
-      <div className="flex gap-20 w-full">
-        <div className="flex-1">
-          {comments?.map((comment, idx) => (
-            <CommentList key={idx} comment={comment} />
-          ))}
-        </div>
-        <div className="flex-1">
+      <div className="">
+        <div className="w-full lg:w-1/2">
           {email !== user?.email ? (
             <div className="flex gap-2 ">
               <input
@@ -123,6 +127,14 @@ const DetailsPage = () => {
           ) : (
             ''
           )}
+        </div>
+        <div className="w-full lg:w-1/2 ">
+          <h5 className="text-2xl font-semibold mt-10 mb-6">Comments</h5>
+          <div className="flex flex-col gap-10">
+            {comments?.map((comment, idx) => (
+              <CommentList key={idx} comment={comment} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
