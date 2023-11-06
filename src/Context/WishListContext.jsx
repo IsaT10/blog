@@ -13,14 +13,10 @@ export const useWishlist = () => {
 const WishListProvider = ({ children }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const { user } = useAuth();
-  console.log(user?.email);
-
-  //   const t = 'http://localhost:5000/api/blog/wishlist?email=${user?.email}';
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['wishlist'],
     queryFn: async () => {
-      console.log(user?.email);
       const wishlistBlogs = await fetch(
         `http://localhost:5000/api/blog/wishlist?email=${user?.email}`
       );
@@ -39,8 +35,7 @@ const WishListProvider = ({ children }) => {
     axios
       .post('http://localhost:5000/api/blog/wishlist', blog)
       .then((res) => {
-        console.log(res.data);
-        if (res.data.acknowledged) {
+        if (res?.data?.acknowledged) {
           setWishlistItems([
             ...wishlistItems,
             { _id: res.data.insertedId, ...blog },
@@ -63,6 +58,7 @@ const WishListProvider = ({ children }) => {
         isLoading,
         wishlistItems,
         setWishlistItems,
+        refetch,
       }}
     >
       {children}

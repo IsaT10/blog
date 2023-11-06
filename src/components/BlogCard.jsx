@@ -60,9 +60,11 @@ const BlogCard = ({
                   <p className="text-gray-400 my-4 font-semibold">
                     {short_description.slice(0, 70)}...
                   </p>
-                  <button className="bg-primary-color text-white font-semibold px-4 py-2 rounded-md ">
-                    Details
-                  </button>
+                  <Link to={`/blog/:blogName/:id`}>
+                    <button className="bg-primary-color text-white font-semibold px-4 py-2 rounded-md ">
+                      Details
+                    </button>
+                  </Link>
                 </div>
                 <div className="flex  space-x-2 text-sm font-medium items-center justify-between">
                   <div className="flex items-center flex-col  gap-2">

@@ -3,14 +3,14 @@ import { useWishlist } from '../../Context/WishListContext';
 import WishlistItem from '../../components/WishlistItem';
 
 const Wishlist = () => {
-  const { wishlistItems, setWishlistItems } = useWishlist();
+  const { wishlistItems, setWishlistItems, refetch } = useWishlist();
   console.log(wishlistItems);
   return (
     <div className="my-7 mx-2 min-h-[68vh]">
       {wishlistItems?.length > 0 ? (
-        <div className="grid grid-cols-12 gap-16">
+        <div className="grid grid-cols-12 gap-6 xl:gap-16">
           {wishlistItems.map((item, idx) => (
-            <WishlistItem key={idx} item={item} />
+            <WishlistItem key={idx} item={item} refetch={refetch} />
           ))}
         </div>
       ) : (
