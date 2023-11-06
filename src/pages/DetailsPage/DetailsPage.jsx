@@ -5,19 +5,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import CommentList from '../../components/CommentList';
+import useGetSingleData from '../../hooks/useGetSingleData';
 
 const DetailsPage = () => {
   const [comment, setComment] = useState('');
   const { id } = useParams();
   const { user } = useAuth();
-
-  const { data, isLoading } = useQuery({
-    queryKey: ['blogDetails'],
-    queryFn: async () => {
-      const blog = await fetch(`http://localhost:5000/api/blogs/${id}`);
-      return blog.json();
-    },
-  });
+  const { data } = useGetSingleData(id);
 
   const {
     _id,
@@ -29,7 +23,6 @@ const DetailsPage = () => {
     long_description,
     date,
   } = data || {};
-  console.log(data);
 
   const {
     data: comments,
@@ -51,9 +44,8 @@ const DetailsPage = () => {
     comment,
   };
 
-  console.log(comments);
-
   const handleComment = () => {
+    if (comment.length === 0) return;
     axios
       .post('http://localhost:5000/api/blog/comment', commentData)
       .then((res) => {

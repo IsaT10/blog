@@ -13,7 +13,6 @@ const AddBlog = () => {
     long_description: '',
     image: '',
   });
-  // console.log(blogInfo.category);
 
   const date = new Date();
 
@@ -30,41 +29,6 @@ const AddBlog = () => {
       wishlist: false,
     };
     console.log(blog);
-    // const obj = [
-    //   {
-    //     title: 'dsadas',
-    //     brandName: '',
-    //     category: 'Science',
-    //     price: 'asd',
-    //     short_description: 'asd',
-    //     long_description: 'das',
-    //     image: 'asdas',
-    //     authorName: 'Rakib Uddin',
-    //     date: '2023-11-05T08:45:59.836Z',
-    //   },
-    //   {
-    //     title: 'dsadas',
-    //     brandName: '',
-    //     category: 'Garden',
-    //     price: 'asd',
-    //     short_description: 'asd',
-    //     long_description: 'das',
-    //     image: 'asdas',
-    //     authorName: 'Rakib Uddin',
-    //     date: '2023-11-05T08:45:42.747Z',
-    //   },
-    //   {
-    //     title: 'dsadas',
-    //     brandName: '',
-    //     category: 'Health',
-    //     price: 'asd',
-    //     short_description: 'asd',
-    //     long_description: 'das',
-    //     image: 'asdas',
-    //     authorName: 'Rakib Uddin',
-    //     date: '2023-11-05T08:44:56.074Z',
-    //   },
-    // ];
 
     axios
       .post('http://localhost:5000/api/blogs', blog)
@@ -140,8 +104,8 @@ const AddBlog = () => {
               <option className="text-lg font-semibold" value="Technology">
                 Technology
               </option>
-              <option className="text-lg font-semibold" value="Garden">
-                Garden
+              <option className="text-lg font-semibold" value="Home">
+                Home
               </option>
               <option className="text-lg font-semibold" value="Science">
                 Science

@@ -47,7 +47,7 @@ const BlogCard = ({
           <div className="flex flex-col ">
             <img
               src={image}
-              alt="Just a flower"
+              alt=""
               className=" w-full sm:h-[300px] md:h-[300px] object-cover  rounded-md"
             />
             <div className="flex-auto p-4 justify-evenly">

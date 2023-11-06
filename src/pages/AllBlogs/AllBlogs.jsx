@@ -12,6 +12,7 @@ const AllBlogs = () => {
   const { blogs, blogsLoading } = useGetData();
 
   const { data, isLoading, refetch } = useCategory(category);
+  console.log(data);
 
   useEffect(() => {
     refetch();
@@ -42,7 +43,7 @@ const AllBlogs = () => {
               value={''}
               className="text-lg text-primary-color font-semibold"
             >
-              Filter by category
+              All
             </option>
             <option className="text-lg font-semibold" value="Food">
               Food
@@ -56,8 +57,8 @@ const AllBlogs = () => {
             <option className="text-lg font-semibold" value="Technology">
               Technology
             </option>
-            <option className="text-lg font-semibold" value="Garden">
-              Garden
+            <option className="text-lg font-semibold" value="Home">
+              Home
             </option>
             <option className="text-lg font-semibold" value="Science">
               Science
@@ -94,6 +95,9 @@ const AllBlogs = () => {
               ))}
             </div>
           ) : (
+            // <p className="h-[42vh] flex items-center justify-center text-2xl font-semibold text-red-500 -mt-6">
+            //   Not available blog in this category
+            // </p>'
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
               {blogs?.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
