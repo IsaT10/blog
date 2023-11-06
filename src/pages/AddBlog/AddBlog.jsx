@@ -27,6 +27,7 @@ const AddBlog = () => {
       authorName: user?.displayName,
       date,
       email: user?.email,
+      wishlist: false,
     };
     console.log(blog);
     // const obj = [
