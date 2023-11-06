@@ -7,6 +7,7 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import { Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import WishListProvider from './Context/WishListContext.jsx';
 
 const queryClient = new QueryClient();
 
@@ -14,20 +15,22 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <ToastContainer
-          position="top-right"
-          autoClose={400}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          transition={Slide}
-          pauseOnHover={false}
-          theme="dark"
-        />
-        <RouterProvider router={router} />
+        <WishListProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={400}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            transition={Slide}
+            pauseOnHover={false}
+            theme="dark"
+          />
+          <RouterProvider router={router} />
+        </WishListProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>

@@ -1,5 +1,7 @@
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useWishlist } from '../Context/WishListContext';
+import useAuth from '../hooks/useAuth';
 
 const BlogCard = ({
   blog: {
@@ -12,6 +14,30 @@ const BlogCard = ({
     date,
   },
 }) => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { addToWishlist, setWishlistItems } = useWishlist();
+
+  const handleAddToWishlist = () => {
+    // if (!user) {
+    //   navigate('/login');
+    //   return;
+    // }
+
+    const data = {
+      blogId: _id,
+      title,
+      image,
+      short_description,
+      category,
+      long_description,
+      date,
+      email: user?.email,
+    };
+
+    addToWishlist(data);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer">
       <div className="container">
@@ -50,6 +76,7 @@ const BlogCard = ({
                       </Link> */}
                     <div className="tooltip tooltip-left" data-tip="Wishlist">
                       <AiOutlineHeart
+                        onClick={handleAddToWishlist}
                         //   onClick={handleAddToCart}
                         className="text-2xl text-secondary-color duration-200 cursor-pointer "
                       />
