@@ -4,13 +4,11 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import useGetData from '../../hooks/useGetData';
 import CommentList from '../../components/CommentList';
 
 const DetailsPage = () => {
   const [comment, setComment] = useState('');
   const { id } = useParams();
-  const { comments, commentsRefatch } = useGetData();
   const { user } = useAuth();
 
   const { data, isLoading } = useQuery({
@@ -24,15 +22,26 @@ const DetailsPage = () => {
   const {
     _id,
     authorName,
-
+    email,
     title,
     image,
     short_description,
     long_description,
     date,
   } = data || {};
-
   console.log(data);
+
+  const {
+    data: comments,
+    isLoading: commentLoading,
+    refetch: commentsRefatch,
+  } = useQuery({
+    queryKey: ['comment'],
+    queryFn: async () => {
+      const data = await fetch(`http://localhost:5000/api/blog/comment/${id}`);
+      return data.json();
+    },
+  });
 
   const commentData = {
     blogId: _id,
@@ -91,41 +100,29 @@ const DetailsPage = () => {
       </div>
       <div className="flex gap-20 w-full">
         <div className="flex-1">
-          {comments.map((comment, idx) => (
+          {comments?.map((comment, idx) => (
             <CommentList key={idx} comment={comment} />
           ))}
         </div>
-        {/* <div className="flex-1 grid grid-cols-[min-content,1fr] gap-2 gap-x-4 tracking-tight">
-          <figure className="row-span-2 h-12 w-12">
-            <img
-              className="rounded-md"
-              src={user?.photoURL}
-              alt="comment author"
-            />
-          </figure>
-          <h4 className="text-xl font-semibold text-stone-700 leading-6">
-            {user?.displayName}
-          </h4>
-          <p className="font-semibold text-lg text-stone-500 ">
-            f.dev has a lot of awesome and informative blogs. When I get free
-            time I always visit this website for learning.
-          </p>
-        </div> */}
         <div className="flex-1">
-          <div className="flex gap-2 ">
-            <input
-              className="rounded-sm border-2 border-stone-500 px-3 py-3 flex-1"
-              type="text"
-              placeholder="Share your thoughts"
-              onChange={(e) => setComment(e.target.value)}
-            />
-            <button
-              onClick={handleComment}
-              className="font-semibold bg-primary-color rounded-md py-1.5 border-2 border-primary-color px-4 text-white"
-            >
-              Comment
-            </button>
-          </div>
+          {email !== user?.email ? (
+            <div className="flex gap-2 ">
+              <input
+                className="rounded-sm border-2 border-stone-500 px-3 py-3 flex-1"
+                type="text"
+                placeholder="Share your thoughts"
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <button
+                onClick={handleComment}
+                className="font-semibold bg-primary-color rounded-md py-1.5 border-2 border-primary-color px-4 text-white"
+              >
+                Comment
+              </button>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
