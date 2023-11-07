@@ -1,17 +1,10 @@
 import axios from 'axios';
 import { MdCancel } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const WishlistItem = ({
-  item: {
-    _id,
-    title,
-    image,
-    short_description,
-    category,
-    long_description,
-    date,
-  },
+  item: { _id, title, image, short_description, category },
   refetch,
 }) => {
   const swalWithBootstrapButtons = Swal.mixin({
@@ -71,24 +64,26 @@ const WishlistItem = ({
         }
       });
   };
+  const linkTitle = title.toLowerCase().replace(/ /g, '-');
+
   return (
     <div className="col-span-12 md:col-span-6 flex relative">
       <img
-        className="lg:h-[200px] w-[160px] md:w-[150px] h-[180px] lg:w-[200px] rounded-l-md object-cover"
+        className="h-full w-[160px] md:w-[150px]   lg:w-[200px] rounded-l-md object-cover"
         src={image}
         alt=""
       />
       <div className="flex-col flex-1 flex items-start justify-between p-2 lg:p-4  border-2 border-stone-300 rounded-r-md border-l-0">
-        <h2 className="text-lg lg:text-xl xl:text-2xl font-semibold">
-          {title}
-        </h2>
+        <h2 className="text-lg lg:text-xl  font-semibold">{title}</h2>
         <p className="font-semibold text-sm lg:text-base text-stone-400">
-          {short_description.slice(0, 70)}...
+          {short_description.slice(0, 60)}...
         </p>
         <div className="flex justify-between gap-4 items-center w-full">
-          <button className="bg-primary-color text-white font-semibold px-3 py-1.5 lg:px-4 lg:py-2 rounded-md ">
-            Details
-          </button>
+          <Link to={`/blog/${linkTitle}/${_id}`}>
+            <button className="bg-primary-color text-white font-semibold px-3 py-1.5 lg:px-4 lg:py-2 rounded-md ">
+              Details
+            </button>
+          </Link>
           <div>
             <p className="flex items-center bg-secondary-color text-xs px-2 py-0.5  uppercase font-bold text-stone-100 bg-primary-color rounded-full">
               {category}

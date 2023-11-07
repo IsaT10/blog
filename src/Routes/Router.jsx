@@ -10,6 +10,7 @@ import AllBlogs from '../pages/AllBlogs/AllBlogs';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import UpdateBlog from '../pages/UpdateBlog/UpdateBlog';
+import FeaturedBlog from '../pages/FeaturedBlog/FeaturedBlog';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      { path: 'featuredblogs', element: <FeaturedBlog /> },
       {
         path: 'blog/:blogName/:id',
         element: (

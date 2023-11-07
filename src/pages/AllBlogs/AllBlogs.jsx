@@ -12,11 +12,11 @@ const AllBlogs = () => {
   const { blogs, blogsLoading } = useGetData();
 
   const { data, isLoading, refetch } = useCategory(category);
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     refetch();
-  }, [category, refetch]);
+  }, [category, refetch, title]);
 
   const handleSearch = (word) => {
     const filteredPosts = blogs.filter((post) => {

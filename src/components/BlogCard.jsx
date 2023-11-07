@@ -43,14 +43,14 @@ const BlogCard = ({
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer">
       <div className="container">
-        <div className=" mx-auto sm:w-full  shadow-md rounded-md ">
+        <div className=" mx-auto sm:w-full   rounded-md ">
           <div className="flex flex-col ">
             <img
               src={image}
               alt=""
               className=" w-full sm:h-[300px] md:h-[300px] object-cover  rounded-md"
             />
-            <div className="flex-auto p-4 justify-evenly">
+            <div className="flex-auto py-4 justify-evenly">
               <div className="flex justify-between items-center">
                 <p className="flex items-center bg-secondary-color text-xs px-2 py-0.5  uppercase font-bold text-stone-100 bg-primary-color rounded-full">
                   {category}

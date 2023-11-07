@@ -70,7 +70,11 @@ const DetailsPage = () => {
     <div className="my-8 mx-2">
       <div className="md:flex gap-8  min-h-[70vh]">
         <div className="flex-1">
-          <img className=" w-full rounded-md object-cover" src={image} alt="" />
+          <img
+            className=" w-full h-[70vh] rounded-md object-cover"
+            src={image}
+            alt=""
+          />
         </div>
         <div className="flex-1">
           <div className="min-h-[80vh]">
@@ -99,7 +103,7 @@ const DetailsPage = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="mt-16 ">
         <div className="w-full lg:w-1/2">
           {email !== user?.email ? (
             <div className="flex gap-2 ">
