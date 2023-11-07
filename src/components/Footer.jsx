@@ -1,6 +1,6 @@
 import { AiFillInstagram } from 'react-icons/ai';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import { FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaTwitch, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (

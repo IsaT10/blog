@@ -4,6 +4,7 @@ import people1 from '../../assets/people1.jpg';
 import people2 from '../../assets/people2.jpg';
 import people3 from '../../assets/people3.jpg';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { FaTwitch } from 'react-icons/fa';
 // import { FaArrowRightLong, FaArrowLeftLong } from 'react-icons/fa6';
 
 const ReviewSection = () => {

@@ -26,6 +26,8 @@ const AddBlog = () => {
       authorName: user?.displayName,
       date,
       email: user?.email,
+      authorPhoto:
+        user?.photoURL || 'https://i.ibb.co/2t81TDZ/ISS-18592-03637.webp',
       wishlist: false,
     };
     console.log(blog);
@@ -91,6 +93,7 @@ const AddBlog = () => {
               onBlur={(e) => {
                 setBlogInfo({ ...blogInfo, category: e.target.value });
               }}
+              value={blogInfo.category}
             >
               <option className="text-lg font-semibold" value="Food">
                 Food
