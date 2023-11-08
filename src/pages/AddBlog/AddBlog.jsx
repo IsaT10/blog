@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
 import SectionTitle from '../../components/SectionTitle';
 import { useNavigate } from 'react-router-dom';
+import useAxios from '../../hooks/useAxios';
 
 const AddBlog = () => {
   const [blogInfo, setBlogInfo] = useState({
@@ -15,6 +15,7 @@ const AddBlog = () => {
   });
 
   const date = new Date();
+  const axios = useAxios();
 
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const AddBlog = () => {
     console.log(blog);
 
     axios
-      .post('http://localhost:5000/api/blogs', blog)
+      .post('/blogs', blog)
       .then(function (response) {
         console.log(response.data);
         if (response.data.acknowledged) {
@@ -93,7 +94,6 @@ const AddBlog = () => {
               onBlur={(e) => {
                 setBlogInfo({ ...blogInfo, category: e.target.value });
               }}
-              value={blogInfo.category}
             >
               <option className="text-lg font-semibold" value="Food">
                 Food

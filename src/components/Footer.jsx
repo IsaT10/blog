@@ -1,11 +1,11 @@
 import { AiFillInstagram } from 'react-icons/ai';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import { FaLinkedin, FaTwitch, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div className="mx-3 mt-20 mb-8">
-      <div className="flex md:flex-row flex-col gap-6  justify-between items-center ">
+    <div className="mx-3 my-28 mb-14 border-t-2 pt-16 border-primary-color ">
+      <div className="flex md:flex-row flex-col gap-6 justify-between items-center ">
         <div className="flex gap-6 text-stone-500 font-semibold text-sm  md:text-base">
           <p className="hover:text-primary-color cursor-pointer duration-150">
             About

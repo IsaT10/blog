@@ -4,10 +4,12 @@ import { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxios from '../../hooks/useAxios';
 
 const UpdateBlog = () => {
   const { id } = useParams();
-  const { data } = useGetSingleData(id);
+  const axios = useAxios();
+  const { blog } = useGetSingleData(id);
   const {
     authorName,
     email,
@@ -16,7 +18,7 @@ const UpdateBlog = () => {
     short_description,
     long_description,
     category,
-  } = data || {};
+  } = blog?.data || {};
 
   const date = new Date();
 
@@ -40,7 +42,7 @@ const UpdateBlog = () => {
     console.log(data);
 
     axios
-      .put(`http://localhost:5000/api/blogs/${id}`, data)
+      .put(`/blogs/${id}`, data)
       .then((res) => {
         if (res.data.modifiedCount) {
           toast.success('update blog');

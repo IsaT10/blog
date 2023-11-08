@@ -2,16 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import CommentList from '../../components/CommentList';
 import useGetSingleData from '../../hooks/useGetSingleData';
+import useAxios from '../../hooks/useAxios';
 
 const DetailsPage = () => {
   const [comment, setComment] = useState('');
   const { id } = useParams();
   const { user } = useAuth();
-  const { data } = useGetSingleData(id);
+  const { blog } = useGetSingleData(id);
+  const axios = useAxios();
 
   const {
     _id,
@@ -22,7 +23,12 @@ const DetailsPage = () => {
     short_description,
     long_description,
     date,
-  } = data || {};
+  } = blog?.data || {};
+
+  const getComments = async () => {
+    const res = await axios.get(`/blog/comment/${id}`);
+    return res;
+  };
 
   const {
     data: comments,
@@ -30,10 +36,7 @@ const DetailsPage = () => {
     refetch: commentsRefatch,
   } = useQuery({
     queryKey: ['comment'],
-    queryFn: async () => {
-      const data = await fetch(`http://localhost:5000/api/blog/comment/${id}`);
-      return data.json();
-    },
+    queryFn: getComments,
   });
 
   const commentData = {
@@ -47,7 +50,7 @@ const DetailsPage = () => {
   const handleComment = () => {
     if (comment.length === 0) return;
     axios
-      .post('http://localhost:5000/api/blog/comment', commentData)
+      .post('/blog/comment', commentData)
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success('comment add');
@@ -127,7 +130,7 @@ const DetailsPage = () => {
         <div className="w-full lg:w-1/2 ">
           <h5 className="text-2xl font-semibold mt-10 mb-6">Comments</h5>
           <div className="flex flex-col gap-10">
-            {comments?.map((comment, idx) => (
+            {comments?.data?.map((comment, idx) => (
               <CommentList key={idx} comment={comment} />
             ))}
           </div>

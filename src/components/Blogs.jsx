@@ -5,8 +5,10 @@ import SectionTitle from './SectionTitle';
 
 const Blogs = () => {
   const { blogs, blogsLoading } = useGetData();
+  // console.log(blogs);
+  // console.log(blogsLoading);
 
-  const sortedData = blogs?.sort((a, b) => {
+  const sortedData = blogs?.data?.sort((a, b) => {
     if (a.date > b.date) {
       return -1;
     } else if (a < b) {

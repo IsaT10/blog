@@ -1,15 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import useAxios from './useAxios';
 
 const useGetSingleData = (id) => {
-  const { data, isLoading } = useQuery({
+  const axios = useAxios();
+
+  const getBlogDetails = async () => {
+    const res = await axios.get(`/blogs/${id}`);
+    return res;
+  };
+
+  const { data: blog, isLoading } = useQuery({
     queryKey: ['blogDetails'],
-    queryFn: async () => {
-      const blog = await fetch(`http://localhost:5000/api/blogs/${id}`);
-      return blog.json();
-    },
+    queryFn: getBlogDetails,
   });
 
-  return { data, isLoading };
+  return { blog, isLoading };
 };
 
 export default useGetSingleData;

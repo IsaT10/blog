@@ -19,7 +19,7 @@ const AllBlogs = () => {
   }, [category, refetch, title]);
 
   const handleSearch = (word) => {
-    const filteredPosts = blogs.filter((post) => {
+    const filteredPosts = blogs?.data?.filter((post) => {
       const postTitle = post.title.toLowerCase();
       const title = word.toLowerCase();
 
@@ -99,7 +99,7 @@ const AllBlogs = () => {
             //   Not available blog in this category
             // </p>'
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
-              {blogs?.map((blog) => (
+              {blogs?.data?.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}
             </div>

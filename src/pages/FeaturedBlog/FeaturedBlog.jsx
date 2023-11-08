@@ -4,14 +4,14 @@ import useGetData from '../../hooks/useGetData';
 
 const FeaturedBlog = () => {
   const { blogs, blogsLoading } = useGetData();
-  console.log(blogs);
+  console.log(blogs?.data);
 
   const countWords = (text) => {
     const words = text.trim().split(/\s+/);
     return words.length;
   };
 
-  const sortedData = blogs?.sort((a, b) => {
+  const sortedData = blogs?.data?.sort((a, b) => {
     const wordLengthA = countWords(a.long_description);
     const wordLengthB = countWords(b.long_description);
 

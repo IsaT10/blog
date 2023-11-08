@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaGoogle } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -16,8 +17,8 @@ const Login = () => {
     commonError: '',
   });
 
-  const { logIn, googleSignIn } = useAuth();
-
+  const { logIn, googleSignIn, logOut } = useAuth();
+  const axios = useAxios();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -30,8 +31,26 @@ const Login = () => {
     if (!userInfo.password) return;
     logIn(userInfo.email, userInfo.password)
       .then((result) => {
-        toast.success('Successful Login');
-        navigate(from, { replace: true });
+        const loggedInUser = result.user;
+        const user = {
+          email: loggedInUser.email,
+        };
+        console.log(user);
+        // axios
+        //   .post('http://localhost:5000/api/auth/acess-token', user, {
+        //     withCredentials: true,
+        //   })
+        //   .then((res) => console.log(res))
+        //   .catch((err) => console.log(err));
+        axios.post('/auth/acess-token', user).then((res) => {
+          console.log(res.data);
+          if (res.data.success) {
+            toast.success('Successful Login');
+            navigate(from, { replace: true });
+          } else {
+            logOut();
+          }
+        });
       })
       .catch((error) => {
         form.reset();

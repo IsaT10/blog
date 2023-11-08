@@ -1,12 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import useAxios from './useAxios';
 
 const useGetData = () => {
+  const axios = useAxios();
+
+  const getBlogs = async () => {
+    const res = await axios.get('/blogs');
+    return res;
+  };
+
   const { isLoading: blogsLoading, data: blogs } = useQuery({
     queryKey: ['blogs'],
-    queryFn: async () => {
-      const data = await fetch('http://localhost:5000/api/blogs');
-      return await data.json();
-    },
+    queryFn: getBlogs,
   });
 
   return {

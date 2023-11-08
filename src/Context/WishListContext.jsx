@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAxios from '../hooks/useAxios';
 
 const WishListContext = createContext();
 
@@ -13,29 +13,36 @@ export const useWishlist = () => {
 const WishListProvider = ({ children }) => {
   const [wishlistItems, setWishlistItems] = useState([]);
   const { user } = useAuth();
+  const axios = useAxios();
+
+  console.log(user?.email);
+
+  const getWishlist = async () => {
+    const res = await axios.get(`/blog/wishlist?email=${user?.email}`);
+    return res;
+  };
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['wishlist'],
-    queryFn: async () => {
-      const wishlistBlogs = await fetch(
-        `http://localhost:5000/api/blog/wishlist?email=${user?.email}`
-      );
-      return await wishlistBlogs.json();
-    },
+    queryFn: getWishlist,
   });
 
   useEffect(() => {
-    if (data) {
-      setWishlistItems(data);
+    if (data?.data) {
+      setWishlistItems(data?.data);
       refetch();
     }
-  }, [data, user, refetch]);
+  }, [data?.data, user, refetch]);
 
   const addToWishlist = (blog) => {
+    //  axios.post('/auth/acess-token', user).then((res) => {
+    //       console.log(res.data);
     axios
-      .post('http://localhost:5000/api/blog/wishlist', blog)
+      .post('/blog/wishlist', blog)
       .then((res) => {
+        console.log(res.data);
         if (res?.data?.acknowledged) {
+          console.log(wishlistItems);
           setWishlistItems([
             ...wishlistItems,
             { _id: res.data.insertedId, ...blog },
