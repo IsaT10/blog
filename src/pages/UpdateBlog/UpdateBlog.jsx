@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useGetSingleData from '../../hooks/useGetSingleData';
 import { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
@@ -10,6 +10,7 @@ const UpdateBlog = () => {
   const { id } = useParams();
   const axios = useAxios();
   const { blog } = useGetSingleData(id);
+  const navigate = useNavigate();
   const {
     authorName,
     email,
@@ -21,6 +22,7 @@ const UpdateBlog = () => {
   } = blog?.data || {};
 
   const date = new Date();
+  console.log(category);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +48,7 @@ const UpdateBlog = () => {
       .then((res) => {
         if (res.data.modifiedCount) {
           toast.success('update blog');
+          navigate(-1);
         }
       })
       .catch((err) => console.log(err));
@@ -102,8 +105,8 @@ const UpdateBlog = () => {
               <option className="text-lg font-semibold" value="Technology">
                 Technology
               </option>
-              <option className="text-lg font-semibold" value="Garden">
-                Garden
+              <option className="text-lg font-semibold" value="Home">
+                Home
               </option>
               <option className="text-lg font-semibold" value="Science">
                 Science

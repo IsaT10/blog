@@ -9,7 +9,11 @@ const useGetData = () => {
     return res;
   };
 
-  const { isLoading: blogsLoading, data: blogs } = useQuery({
+  const {
+    isLoading: blogsLoading,
+    data: blogs,
+    refetch: blogsRefatch,
+  } = useQuery({
     queryKey: ['blogs'],
     queryFn: getBlogs,
   });
@@ -17,6 +21,7 @@ const useGetData = () => {
   return {
     blogs,
     blogsLoading,
+    blogsRefatch,
   };
 };
 

@@ -18,12 +18,12 @@ const WishListProvider = ({ children }) => {
   console.log(user?.email);
 
   const getWishlist = async () => {
-    const res = await axios.get(`/blog/wishlist?email=${user?.email}`);
+    const res = await axios.get(`/blog/wishlist?email=${user.email}`);
     return res;
   };
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['wishlist'],
+    queryKey: ['wishlist', user?.email],
     queryFn: getWishlist,
   });
 
@@ -32,11 +32,9 @@ const WishListProvider = ({ children }) => {
       setWishlistItems(data?.data);
       refetch();
     }
-  }, [data?.data, user, refetch]);
+  }, [data?.data, refetch, user]);
 
   const addToWishlist = (blog) => {
-    //  axios.post('/auth/acess-token', user).then((res) => {
-    //       console.log(res.data);
     axios
       .post('/blog/wishlist', blog)
       .then((res) => {

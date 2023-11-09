@@ -31,7 +31,9 @@ const WishlistItem = ({
         if (result.isConfirmed) {
           const deleteItem = async () => {
             axios
-              .delete(`http://localhost:5000/api/blog/wishlists/${_id}`)
+              .delete(
+                `https://blog-server-blush.vercel.app/api/blog/wishlists/${_id}`
+              )
               .then((res) => {
                 if (res?.data?.deletedCount > 0) {
                   refetch();
@@ -69,7 +71,7 @@ const WishlistItem = ({
   return (
     <div className="col-span-12 md:col-span-6 flex relative">
       <img
-        className="h-full w-[160px] md:w-[150px]   lg:w-[200px] rounded-l-md object-cover"
+        className=" w-[160px] md:w-[150px] h-[160px] md:h-[180px]  lg:w-[200px] rounded-l-md object-cover"
         src={image}
         alt=""
       />

@@ -1,8 +1,10 @@
-import React from 'react';
-
-const Loader = () => {
+const Loader = ({ className }) => {
   return (
-    <span className="loading loading-bars text-primary-color loading-lg"></span>
+    <div
+      className={`${className} flex justify-center text-primary-color items-center`}
+    >
+      <span className="loading loading-bars loading-lg"></span>
+    </div>
   );
 };
 

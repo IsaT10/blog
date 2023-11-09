@@ -36,21 +36,15 @@ const Login = () => {
           email: loggedInUser.email,
         };
         console.log(user);
-        // axios
-        //   .post('http://localhost:5000/api/auth/acess-token', user, {
-        //     withCredentials: true,
-        //   })
-        //   .then((res) => console.log(res))
-        //   .catch((err) => console.log(err));
-        axios.post('/auth/acess-token', user).then((res) => {
-          console.log(res.data);
-          if (res.data.success) {
-            toast.success('Successful Login');
-            navigate(from, { replace: true });
-          } else {
-            logOut();
-          }
-        });
+        // axios.post('/auth/acess-token', user).then((res) => {
+        //   console.log(res.data);
+        //   if (res.data.success) {
+        toast.success('Successful Login');
+        navigate(from, { replace: true });
+        //   } else {
+        //     logOut();
+        //   }
+        // });
       })
       .catch((error) => {
         form.reset();

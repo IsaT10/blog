@@ -47,7 +47,7 @@ const Signup = () => {
         // verifyEmail().then(() => {
         //     toast.success("Please check your email");
         // });
-        //   toast.success('Successful Sign up');
+        toast.success('Successful Sign up');
         navigate(from, { replace: true });
 
         // navigate("/");

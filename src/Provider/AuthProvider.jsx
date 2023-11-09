@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import { createContext } from 'react';
 import { auth } from '../config/FirebaseConfig';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -65,9 +66,26 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // const userEmail = currentUser?.email || user?.email;
+
       setUser(currentUser);
-      console.log(currentUser);
       setLoading(false);
+      // console.log(currentUser);
+      // const loggedUser = { email: userEmail };
+
+      // if (currentUser) {
+      //   axios
+      //     .post('https://blog-server-blush.vercel.app/api/auth/acess-token', loggedUser, {
+      //       withCredentials: true,
+      //     })
+      //     .then((res) => console.log('token response', res.data));
+      // } else {
+      //   axios
+      //     .post('https://blog-server-blush.vercel.app/api/auth/logout', loggedUser, {
+      //       withCredentials: true,
+      //     })
+      //     .then((res) => console.log(res.data));
+      // }
     });
     return () => unsubscribe();
   }, []);

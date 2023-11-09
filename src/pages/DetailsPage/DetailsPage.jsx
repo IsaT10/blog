@@ -53,6 +53,7 @@ const DetailsPage = () => {
       .post('/blog/comment', commentData)
       .then((res) => {
         if (res.data.acknowledged) {
+          setComment('');
           toast.success('comment add');
           commentsRefatch();
         }
@@ -113,6 +114,7 @@ const DetailsPage = () => {
               <input
                 className="rounded-sm border-2 border-stone-500 px-3 py-3 flex-1"
                 type="text"
+                value={comment}
                 placeholder="Share your thoughts"
                 onChange={(e) => setComment(e.target.value)}
               />
@@ -128,7 +130,11 @@ const DetailsPage = () => {
           )}
         </div>
         <div className="w-full lg:w-1/2 ">
-          <h5 className="text-2xl font-semibold mt-10 mb-6">Comments</h5>
+          {comments?.data?.length > 0 ? (
+            <h5 className="text-2xl font-semibold mt-10 mb-6">Comments</h5>
+          ) : (
+            ''
+          )}
           <div className="flex flex-col gap-10">
             {comments?.data?.map((comment, idx) => (
               <CommentList key={idx} comment={comment} />

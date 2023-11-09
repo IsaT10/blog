@@ -54,7 +54,7 @@ const FeaturedBlog = () => {
       style: {
         fontSize: '18px',
         // justifyContent: 'center',
-        zIndex: -10,
+        marginLeft: '80px',
       },
     },
     {
@@ -83,11 +83,11 @@ const FeaturedBlog = () => {
       style: {
         color: 'black',
         fontSize: '18px',
-        fontWeight: 'bold',
+        fontWeight: '600',
         paddingLeft: '0 8px',
         // justifyContent: 'center',
         background: '#E5E5E5',
-        marginLeft: '-60px',
+        marginLeft: '-30px',
       },
     },
     // cells: {
@@ -120,7 +120,7 @@ const FeaturedBlog = () => {
   );
 
   return (
-    <div className="lg:w-full overflow-x-auto w-[97%]">
+    <div className="lg:w-full overflow-x-auto w-[97%] my-10 border-2 border-stone-300">
       {blogsLoading ? (
         <p>Loading...</p>
       ) : (

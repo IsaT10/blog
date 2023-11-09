@@ -6,7 +6,7 @@ import SectionTitle from './SectionTitle';
 
 const PopularWriter = () => {
   return (
-    <div className="mt-10 mx-2">
+    <div className="mb-16 mt-16 lg:mb-28 mx-2">
       <SectionTitle>Popular wreiter</SectionTitle>
       <div className="flex items-center justify-between gap-5 flex-wrap">
         <div className="mx-auto">

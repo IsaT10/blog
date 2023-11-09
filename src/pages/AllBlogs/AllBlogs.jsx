@@ -4,19 +4,24 @@ import SectionTitle from '../../components/SectionTitle';
 import useGetData from '../../hooks/useGetData';
 import { FaSearch } from 'react-icons/fa';
 import useCategory from '../../hooks/useCategory';
+import Loader from '../../components/Loader';
 
 const AllBlogs = () => {
   const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [serachedItem, setSearchedItem] = useState([]);
-  const { blogs, blogsLoading } = useGetData();
+  const { blogs, blogsLoading, blogsRefatch } = useGetData();
 
-  const { data, isLoading, refetch } = useCategory(category);
-  // console.log(data);
+  const { data, refetch } = useCategory(category);
 
   useEffect(() => {
+    blogsRefatch();
+  }, [blogsRefatch, title]);
+
+  useEffect(() => {
+    setSearchedItem([]);
     refetch();
-  }, [category, refetch, title]);
+  }, [category, refetch]);
 
   const handleSearch = (word) => {
     const filteredPosts = blogs?.data?.filter((post) => {
@@ -25,11 +30,18 @@ const AllBlogs = () => {
 
       return postTitle.includes(title);
     });
+
     setSearchedItem(filteredPosts);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(title);
+    }
+  };
+
   return (
-    <div className="my-5 md:mt-10 mx-3">
+    <div className="mt-5 mb-10 mx-3">
       <div className="flex justify-between items-center">
         <SectionTitle>All blogs</SectionTitle>
         <div className=" flex gap-4">
@@ -64,45 +76,54 @@ const AllBlogs = () => {
               Science
             </option>
           </select>
-          <div className="relative">
+          <div className="flex items-center">
             <input
-              className="h-[40px]  border-2 border-stone-400 text-stone-900 pl-9 rounded-md placeholder:text-stone-400"
+              className="h-[40px] border-r-0 border-2 border-stone-400 text-stone-900 pl-4 rounded-l-md placeholder:text-stone-400 outline-none"
               type="text"
               value={title}
               placeholder="search"
               onChange={(e) => setTitle(e.target.value)}
+              onKeyPress={handleKeyPress}
             />
-            <FaSearch
+            <button
               onClick={() => handleSearch(title)}
-              className="absolute text-stone-400 top-3 left-3 cursor-pointer"
-            />
+              className="bg-primary-color p-3 rounded-r-md"
+            >
+              <FaSearch className=" text-stone-100  " />
+            </button>
           </div>
         </div>
       </div>
 
-      {serachedItem.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
-          {serachedItem?.map((blog) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
+      {blogsLoading ? (
+        <Loader className="h-[53vh]" />
       ) : (
         <>
-          {data?.length > 0 ? (
+          {serachedItem.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
-              {data?.map((blog) => (
+              {serachedItem?.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}
             </div>
           ) : (
-            // <p className="h-[42vh] flex items-center justify-center text-2xl font-semibold text-red-500 -mt-6">
-            //   Not available blog in this category
-            // </p>'
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
-              {blogs?.data?.map((blog) => (
-                <BlogCard key={blog._id} blog={blog} />
-              ))}
-            </div>
+            <>
+              {data?.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
+                  {data?.map((blog) => (
+                    <BlogCard key={blog._id} blog={blog} />
+                  ))}
+                </div>
+              ) : (
+                // <p className="h-[42vh] flex items-center justify-center text-2xl font-semibold text-red-500 -mt-6">
+                //   Not available blog in this category
+                // </p>'
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-14 lg:gap-10 xl:gap-20 items-start">
+                  {blogs?.data?.map((blog) => (
+                    <BlogCard key={blog._id} blog={blog} />
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </>
       )}
