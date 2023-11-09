@@ -23,7 +23,7 @@ const NewsLetter = () => {
   };
   return (
     <div className="mx-2">
-      <div className="bg-primary-color mt-10 mb-3  px-5 mx-auto h-[230px] sm:h-[250px] md:h-[300px] flex items-center justify-center">
+      <div className="bg-primary-color mt-10 mb-16  px-5 mx-auto h-[230px] sm:h-[250px] md:h-[300px] flex items-center justify-center">
         <div className="flex flex-col gap-4 w-full sm:w-[450px] md:w-[500px]">
           <h3 className="text-center font-semibold uppercase tracking-widest text-2xl sm:text-3xl md:text-4xl text-white">
             News letter

@@ -1,10 +1,11 @@
 import React from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import useGetData from '../../hooks/useGetData';
+import Loader from '../../components/Loader';
 
 const FeaturedBlog = () => {
   const { blogs, blogsLoading } = useGetData();
-  console.log(blogs?.data);
+  // console.log(blogs?.data);
 
   const countWords = (text) => {
     const words = text.trim().split(/\s+/);
@@ -33,8 +34,6 @@ const FeaturedBlog = () => {
       style: {
         fontWeight: '600',
         fontSize: '20px',
-
-        // justifyContent: 'center',
       },
     },
     {
@@ -43,8 +42,6 @@ const FeaturedBlog = () => {
       style: {
         fontSize: '18px',
         fontWeight: '600',
-
-        // justifyContent: 'center',
         marginLeft: '-200px',
       },
     },
@@ -53,7 +50,6 @@ const FeaturedBlog = () => {
       selector: (row) => row.authorName,
       style: {
         fontSize: '18px',
-        // justifyContent: 'center',
         marginLeft: '80px',
       },
     },
@@ -68,7 +64,6 @@ const FeaturedBlog = () => {
       ),
       style: {
         fontSize: '18px',
-        // justifyContent: 'center',
       },
     },
   ];
@@ -76,7 +71,6 @@ const FeaturedBlog = () => {
     rows: {
       style: {
         minHeight: '72px', // override the row height
-        // maxWidth: '700px',
       },
     },
     headCells: {
@@ -85,17 +79,10 @@ const FeaturedBlog = () => {
         fontSize: '18px',
         fontWeight: '600',
         paddingLeft: '0 8px',
-        // justifyContent: 'center',
         background: '#E5E5E5',
         marginLeft: '-30px',
       },
     },
-    // cells: {
-    //   style: {
-    //     paddingLeft: '8px', // override the cell padding for data cells
-    //     paddingRight: '8px',
-    //   },
-    // },
   };
 
   createTheme(
@@ -108,10 +95,6 @@ const FeaturedBlog = () => {
       background: {
         default: '',
       },
-      context: {
-        background: '#cb4b16',
-        text: '#FFFFFF',
-      },
       divider: {
         default: '#999',
       },
@@ -120,17 +103,19 @@ const FeaturedBlog = () => {
   );
 
   return (
-    <div className="lg:w-full overflow-x-auto w-[97%] my-10 border-2 border-stone-300">
+    <div className="lg:w-full overflow-x-auto w-[97%] mx-2 my-10 ">
       {blogsLoading ? (
-        <p>Loading...</p>
+        <Loader className="h-[73vh]" />
       ) : (
-        <DataTable
-          responsive
-          columns={columns}
-          data={top10Data}
-          customStyles={customStyles}
-          theme="solarized"
-        />
+        <div className="border-2 border-stone-300">
+          <DataTable
+            responsive
+            columns={columns}
+            data={top10Data}
+            customStyles={customStyles}
+            theme="solarized"
+          />
+        </div>
       )}
     </div>
   );

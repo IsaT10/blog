@@ -15,7 +15,7 @@ const WishListProvider = ({ children }) => {
   const { user } = useAuth();
   const axios = useAxios();
 
-  console.log(user?.email);
+  // console.log(user?.email);
 
   const getWishlist = async () => {
     const res = await axios.get(`/blog/wishlist?email=${user.email}`);
@@ -38,9 +38,9 @@ const WishListProvider = ({ children }) => {
     axios
       .post('/blog/wishlist', blog)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res?.data?.acknowledged) {
-          console.log(wishlistItems);
+          // console.log(wishlistItems);
           setWishlistItems([
             ...wishlistItems,
             { _id: res.data.insertedId, ...blog },
@@ -51,7 +51,7 @@ const WishListProvider = ({ children }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
 

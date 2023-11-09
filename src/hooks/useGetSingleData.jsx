@@ -9,12 +9,12 @@ const useGetSingleData = (id) => {
     return res;
   };
 
-  const { data: blog, isLoading } = useQuery({
+  const { data: blog, isLoading: blogLoading } = useQuery({
     queryKey: ['blogDetails'],
     queryFn: getBlogDetails,
   });
 
-  return { blog, isLoading };
+  return { blog, blogLoading };
 };
 
 export default useGetSingleData;

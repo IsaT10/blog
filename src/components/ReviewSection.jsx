@@ -37,7 +37,7 @@ const ReviewSection = () => {
           </div>
           <div className="absolute flex justify-between transform md:-translate-y-1/2  -translate-y-full sm:-translate-y-[90%] sm:left-5 sm:right-5 top-1/2 w-full sm:w-3/4 md:w-[85%] lg:w-[70%] mx-auto">
             <a
-              href="#slide4"
+              href="#slide3"
               className="bg-primary-color p-3 sm:p-4 text-white rounded-md sm:text-2xl"
             >
               <AiOutlineArrowLeft />

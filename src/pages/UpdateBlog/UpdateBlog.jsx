@@ -22,7 +22,7 @@ const UpdateBlog = () => {
   } = blog?.data || {};
 
   const date = new Date();
-  console.log(category);
+  // console.log(category);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const UpdateBlog = () => {
       date,
     };
 
-    console.log(data);
+    // console.log(data);
 
     axios
       .put(`/blogs/${id}`, data)

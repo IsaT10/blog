@@ -1,8 +1,14 @@
-# React + Vite
+# 5 project feature
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- On this website, there are a lot of blogs from all over the world writer. Also have some specific categories of like health,travel,technology etc.
 
-Currently, two official plugins are available:
+- If someone wants to be an author and write some blogs, he/she feels free to use this website. Because there is a options to add blogs and contribute some blogs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- The author also updates his/her blog if he/she needs it. If reader want to share his/her thought on this blog he/she share his/her thought.
+
+- If readers want to read some blog later they will add their preferred blog to the wishlist page. When they read their wishlist blog if they need they can remove blog from wishlist.
+
+- The blog with the most words will be shown on another page which is the featured blog page.
+
+[Named Link](https://blog-bloom.netlify.app/ 'Blog Bloom')
+https://blog-bloom.netlify.app/

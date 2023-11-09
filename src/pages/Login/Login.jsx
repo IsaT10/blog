@@ -35,7 +35,7 @@ const Login = () => {
         const user = {
           email: loggedInUser.email,
         };
-        console.log(user);
+        // console.log(user);
         // axios.post('/auth/acess-token', user).then((res) => {
         //   console.log(res.data);
         //   if (res.data.success) {

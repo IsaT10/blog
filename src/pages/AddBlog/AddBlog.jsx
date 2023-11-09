@@ -31,12 +31,12 @@ const AddBlog = () => {
         user?.photoURL || 'https://i.ibb.co/2t81TDZ/ISS-18592-03637.webp',
       wishlist: false,
     };
-    console.log(blog);
+    // console.log(blog);
 
     axios
       .post('/blogs', blog)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.acknowledged) {
           toast.success('Add new blog');
           navigate('/');

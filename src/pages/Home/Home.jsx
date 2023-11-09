@@ -11,8 +11,8 @@ const Home = () => {
       <HeroSection />
       <Blogs />
       <PopularWriter />
-      <ReviewSection />
       <NewsLetter />
+      <ReviewSection />
     </div>
   );
 };

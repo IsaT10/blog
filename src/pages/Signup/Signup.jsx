@@ -74,7 +74,7 @@ const Signup = () => {
   //     console.log(name);
   //     setUserInfo({ ...userInfo, name: name });
   //   };
-  console.log(userInfo.name);
+  // console.log(userInfo.name);
   const handleEmailChange = (e) => {
     const email = e.target.value;
 
