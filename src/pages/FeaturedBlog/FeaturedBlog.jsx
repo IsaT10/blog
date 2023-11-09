@@ -1,11 +1,13 @@
-import React from 'react';
 import DataTable, { createTheme } from 'react-data-table-component';
 import useGetData from '../../hooks/useGetData';
 import Loader from '../../components/Loader';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const FeaturedBlog = () => {
   const { blogs, blogsLoading } = useGetData();
   // console.log(blogs?.data);
+  console.log(blogs);
 
   const countWords = (text) => {
     const words = text.trim().split(/\s+/);
@@ -104,8 +106,9 @@ const FeaturedBlog = () => {
 
   return (
     <div className="lg:w-full overflow-x-auto w-[97%] mx-2 my-10 ">
+      {/* {blogsLoading ? <Skeleton width={600} height={35} /> : 'title'} */}
       {blogsLoading ? (
-        <Loader className="h-[73vh]" />
+        <Skeleton className="h-14  w-full" count={10} />
       ) : (
         <div className="border-2 border-stone-300">
           <DataTable

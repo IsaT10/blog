@@ -6,13 +6,20 @@ import { toast } from 'react-toastify';
 import CommentList from '../../components/CommentList';
 import useGetSingleData from '../../hooks/useGetSingleData';
 import useAxios from '../../hooks/useAxios';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const DetailsPage = () => {
   const [comment, setComment] = useState('');
   const { id } = useParams();
   const { user } = useAuth();
   const { blog, blogLoading } = useGetSingleData(id);
+
   const axios = useAxios();
+  console.log(id);
+  console.log('blog', blog);
 
   const {
     _id,
@@ -71,26 +78,45 @@ const DetailsPage = () => {
       <div className="my-8 mx-2">
         <div className="md:flex gap-8  min-h-[70vh]">
           <div className="flex-1">
-            <img
-              className=" w-full h-[70vh] rounded-md object-cover"
-              src={image}
-              alt=""
-            />
+            {blogLoading ? (
+              <Skeleton className="w-full h-[70vh]" />
+            ) : (
+              <PhotoProvider>
+                <PhotoView src={image}>
+                  <img
+                    className=" w-full h-[70vh] rounded-md object-cover"
+                    src={image}
+                    alt=""
+                  />
+                </PhotoView>
+              </PhotoProvider>
+            )}
           </div>
           <div className="flex-1">
             <div className="min-h-[80vh]">
               <div className="flex justify-between font-semibold text-primary-color mb-6">
-                <p>{authorName}</p>
-                <p>{formattedDate}</p>
+                <p>
+                  {blogLoading ? <Skeleton width={100} /> : authorName}
+                  {/* {authorName} */}
+                </p>
+                <p>{blogLoading ? <Skeleton width={140} /> : formattedDate}</p>
               </div>
               <h3 className="text-2xl font-semibold text-stone-700 mb-9">
-                {title}
+                {blogLoading ? <Skeleton width={600} height={35} /> : title}
               </h3>
               <p className="text-gray-500 text-md lg:text-lg !leading-8 block tracking-tight mb-4">
-                {short_description}
+                {blogLoading ? (
+                  <Skeleton width={600} height={25} count={4} />
+                ) : (
+                  short_description
+                )}
               </p>
               <p className="text-gray-500 text-md lg:text-lg !leading-8 block tracking-tight">
-                {long_description}
+                {blogLoading ? (
+                  <Skeleton width={600} height={25} count={15} />
+                ) : (
+                  long_description
+                )}
               </p>
               {email === user?.email ? (
                 <Link to={`/blog/update/${_id}`}>

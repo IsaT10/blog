@@ -2,6 +2,9 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../Context/WishListContext';
 import useAuth from '../hooks/useAuth';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import useGetData from '../hooks/useGetData';
 
 const BlogCard = ({
   blog: {
@@ -27,7 +30,7 @@ const BlogCard = ({
     }
 
     const data = {
-      // blogId: _id,
+      blogId: _id,
       title,
       image,
       short_description,
@@ -48,8 +51,9 @@ const BlogCard = ({
             <img
               src={image}
               alt=""
-              className=" w-full sm:h-[300px] md:h-[300px] object-cover  rounded-md"
+              className=" w-full h-[300px] object-cover  rounded-md"
             />
+
             <div className="flex-auto py-4 justify-evenly">
               <div className="flex justify-between items-center">
                 <p className="flex items-center bg-secondary-color text-xs px-2 py-0.5  uppercase font-bold text-stone-100 bg-primary-color rounded-full">

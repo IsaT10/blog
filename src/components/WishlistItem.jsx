@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const WishlistItem = ({
-  item: { _id, title, image, short_description, category },
+  item: { _id, blogId, title, image, short_description, category },
   refetch,
 }) => {
+  console.log(_id);
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -81,7 +82,7 @@ const WishlistItem = ({
           {short_description.slice(0, 60)}...
         </p>
         <div className="flex justify-between gap-4 items-center w-full">
-          <Link to={`/blog/${linkTitle}/${_id}`}>
+          <Link to={`/blog/${linkTitle}/${blogId}`}>
             <button className="bg-primary-color text-white font-semibold px-3 py-1.5 lg:px-4 lg:py-2 rounded-md ">
               Details
             </button>

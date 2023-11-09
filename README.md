@@ -10,5 +10,5 @@
 
 - The blog with the most words will be shown on another page which is the featured blog page.
 
-[Named Link](https://blog-bloom.netlify.app/ 'Blog Bloom')
+[Blog Bloom](https://blog-bloom.netlify.app/ 'Blog Bloom')
 https://blog-bloom.netlify.app/

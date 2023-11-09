@@ -31,7 +31,7 @@ const ReviewSection = () => {
                 Milton
               </p>
               <p className="text-stone-500 font-semibold text-sm text-center">
-                Business man
+                Student
               </p>
             </div>
           </div>

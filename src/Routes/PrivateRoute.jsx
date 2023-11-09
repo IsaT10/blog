@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <Loader className="h-[83vh]" />;
+    return <div className="h-screen"></div>;
   }
 
   if (!user) {

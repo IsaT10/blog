@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import useGetSingleData from '../../hooks/useGetSingleData';
-import { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import useAxios from '../../hooks/useAxios';
 

@@ -3,6 +3,7 @@ import useAxios from './useAxios';
 
 const useGetSingleData = (id) => {
   const axios = useAxios();
+  console.log(id);
 
   const getBlogDetails = async () => {
     const res = await axios.get(`/blogs/${id}`);

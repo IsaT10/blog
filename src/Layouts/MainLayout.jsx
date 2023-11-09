@@ -10,7 +10,7 @@ const MainLayout = () => {
       <header>
         <Nav />
       </header>
-      <main className="max-w-7xl mx-3 md:mx-auto">
+      <main className="max-w-7xl mx-3 md:mx-auto overflow-hidden">
         <Outlet />
       </main>
       <footer className="max-w-7xl mx-3 md:mx-auto">
