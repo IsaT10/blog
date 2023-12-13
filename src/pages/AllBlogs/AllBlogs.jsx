@@ -42,9 +42,9 @@ const AllBlogs = () => {
 
   return (
     <div className="mt-5 mb-10 mx-3">
-      <div className="flex justify-between items-center">
+      <div className="flex md:flex-row flex-col mb-10 justify-between md:items-center">
         <SectionTitle>All blogs</SectionTitle>
-        <div className=" flex gap-4">
+        <div className=" flex sm:flex-row flex-col gap-4">
           <select
             className="h-[40px] w-[180px] px-3 border-2 border-stone-400 text-stone-500 rounded-md "
             value={category}

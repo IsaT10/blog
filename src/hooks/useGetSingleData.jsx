@@ -3,19 +3,22 @@ import useAxios from './useAxios';
 
 const useGetSingleData = (id) => {
   const axios = useAxios();
-  console.log(id);
 
   const getBlogDetails = async () => {
     const res = await axios.get(`/blogs/${id}`);
     return res;
   };
 
-  const { data: blog, isLoading: blogLoading } = useQuery({
+  const {
+    data: blog,
+    isLoading: blogLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['blogDetails'],
     queryFn: getBlogDetails,
   });
 
-  return { blog, blogLoading };
+  return { blog, blogLoading, refetch };
 };
 
 export default useGetSingleData;

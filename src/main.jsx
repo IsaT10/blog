@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import WishListProvider from './Context/WishListContext.jsx';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import './i18n/i18n';
 
 const queryClient = new QueryClient();
 
